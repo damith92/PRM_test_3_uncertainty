@@ -51,7 +51,7 @@ class Graph
 private:
     int V;
 
-    std::list<std::pair<int, int>> *adj;
+    std::list<std::pair<double, int>> *adj;
 
 public:
     std::vector<int> optimalNodes;
@@ -62,9 +62,9 @@ public:
 
         this->V = v;
 
-        this->adj = new std::list<std::pair<int, int>>[this->V];
+        this->adj = new std::list<std::pair<double, int>>[this->V];
     }
-    void addEdge(int vStart, int vEnd, int cost);
+    void addEdge(int vStart, int vEnd, double cost);
     void Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<double> &heuristic);
     void computeStarA(int vStart, int vGoal, std::vector<double> heuristic);
 };
@@ -264,7 +264,7 @@ std::vector<Node> generateNodes(std::vector<ObsCoordinate> obscoordinates)
 
 //-------------------------------------------------------------------------------
 
-void Graph::addEdge(int vStart, int vEnd, int cost)
+void Graph::addEdge(int vStart, int vEnd, double cost)
 {
 
     this->adj[vStart].push_back(std::make_pair(cost, vEnd));
