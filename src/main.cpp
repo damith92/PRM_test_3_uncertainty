@@ -282,7 +282,7 @@ void Graph::addEdge(int vStart, int vEnd, double cost)
 void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<double> &heuristic)
 {
 
-    std::vector<std::tuple<int, int, int>> path;
+    std::vector<std::tuple<double, int, int>> path;
     std::vector<double> functionFX(V, INF);
 
     std::set<std::pair<double, int>> AStar_set;
@@ -308,7 +308,7 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
         {
 
             int nodeGraph_i = (*i).second;
-            int nodeGraph_i_functionFX = (*i).first + heuristic[(*i).second];
+            double nodeGraph_i_functionFX = (*i).first + heuristic[(*i).second];
 
             // check the cost - functionFX for each neighbors of current vertex
             if (visited[nodeGraph_i] != true)
