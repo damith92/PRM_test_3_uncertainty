@@ -22,6 +22,7 @@ int INF = std::numeric_limits<int>::max();
 // data
 
 int NODES = 20; 
+
 double RADIUS = 5;
 double startX = 0.5; 
 double startY = 1.0; 
