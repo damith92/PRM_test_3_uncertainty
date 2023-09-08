@@ -21,7 +21,7 @@ int INF = std::numeric_limits<int>::max();
 
 // data
 
-int NODES = 20; 
+int NODES = 100; 
 double RADIUS = 5;
 double startX = 0.5; 
 double startY = 1.0; 
@@ -421,7 +421,7 @@ int main()
     int numPoints;
 
     // Open the file
-    std::ifstream inputFile("scaled_turbines_xy_1.yaml");
+    std::ifstream inputFile("scaled_turbines_xy.yaml");
     
     // Check if the file is opened successfully
     if (!inputFile.is_open()) {
