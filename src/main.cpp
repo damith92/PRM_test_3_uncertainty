@@ -334,14 +334,14 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
 
     //---------------------------------------------------------------------
 
-    std::multiset<std::tuple<int, int>> init_mSet;
+    std::multiset<std::tuple<double, int>> init_mSet;
     init_mSet.insert(std::make_tuple(0, 0));
-    std::vector<std::multiset<std::tuple<int, int>>> routePath(V, init_mSet);
+    std::vector<std::multiset<std::tuple<int, double>>> routePath(V, init_mSet);
 
     for (int pathV = 1; pathV < V; pathV++)
     {
 
-        std::multiset<std::tuple<int, int>> to_routePath;
+        std::multiset<std::tuple<double, int>> to_routePath;
 
         for (auto &ii : path)
         {
@@ -367,7 +367,7 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
     while (previous != 0)
     {
 
-        std::set<std::tuple<int, int>> minFx;
+        std::set<std::tuple<double, int>> minFx;
 
         for (auto &ii : routePath[previous])
         {
@@ -378,7 +378,7 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
         auto it = minFx.begin();
         previous = std::get<1>(*it);
 
-        int min_path_i = std::get<0>(*it);
+        double min_path_i = std::get<0>(*it);
 
         optimalPath.push_back(previous);
     }
@@ -421,7 +421,7 @@ int main()
     int numPoints;
 
     // Open the file
-    std::ifstream inputFile("scaled_turbines_xy.yaml");
+    std::ifstream inputFile("scaled_turbines_xy_1.yaml");
     
     // Check if the file is opened successfully
     if (!inputFile.is_open()) {
