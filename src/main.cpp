@@ -364,6 +364,8 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
     std::vector<int> optimalPath;
     optimalPath.push_back(vGoal);
 
+    std::vector<double> optimalPathCosts;
+
     while (previous != 0)
     {
 
@@ -381,6 +383,7 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
         double min_path_i = std::get<0>(*it);
 
         optimalPath.push_back(previous);
+        optimalPathCosts.push_back(min_path_i);
     }
 
     optimalNodes = optimalPath;
@@ -391,6 +394,15 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
     {
 
         std::cout << ii << "--";
+    }
+
+    std::cout << "\n";
+
+    std::cout << "Optimal A* path weights for given graph : " << std::endl;
+    for (auto &ii : optimalPathCosts)
+    {
+
+        std::cout << ii << std::endl;
     }
 
     std::cout << "\n";
