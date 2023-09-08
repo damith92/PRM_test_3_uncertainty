@@ -501,7 +501,7 @@ int main()
 
         double dist = measureNodeDistance(a, b);
 
-        dist = UxHwDoubleUniformDist(dist, 1.0);
+        dist = UxHwDoubleGaussDist(dist, 1.0);
 
         heuristic.push_back(measureNodeDistance(a, G_h));
 
