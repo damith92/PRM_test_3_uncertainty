@@ -336,7 +336,7 @@ void Graph::Astar(int vStart, int vGoal, std::vector<bool> visited, std::vector<
 
     std::multiset<std::tuple<double, int>> init_mSet;
     init_mSet.insert(std::make_tuple(0, 0));
-    std::vector<std::multiset<std::tuple<int, double>>> routePath(V, init_mSet);
+    std::vector<std::multiset<std::tuple<double, int>>> routePath(V, init_mSet);
 
     for (int pathV = 1; pathV < V; pathV++)
     {
