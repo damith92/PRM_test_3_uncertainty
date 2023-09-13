@@ -21,7 +21,7 @@ int INF = std::numeric_limits<int>::max();
 
 // data
 
-int NODES = 100; 
+int NODES = 1000; 
 double RADIUS = 5;
 double startX = 0.5; 
 double startY = 1.0; 
@@ -493,6 +493,14 @@ int main()
     for (auto& coord : obscoordinates) {
         std::cout << "X: " << coord.x << " | Y: " << coord.y << std::endl;
     }
+
+    // Create a random number generator
+    std::random_device rd;  // Obtain a random seed from the hardware
+    std::mt19937 gen(rd()); // Initialize the Mersenne Twister random number generator
+
+    // Define the range for random numbers (1 to 4)
+    std::uniform_real_distribution<double> distribution(1.0, 4.0);
+    double random_number_std;
     
 
     std::vector<Node> nodes = generateNodes(obscoordinates);
@@ -513,9 +521,12 @@ int main()
 
         double dist = measureNodeDistance(a, b);
 
-        dist = UxHwDoubleGaussDist(dist, 1.0);
+        random_number_std = distribution(gen);
 
-        heuristic.push_back(measureNodeDistance(a, G_h));
+        dist = UxHwDoubleGaussDist(dist, random_number_std);
+
+        //heuristic.push_back(measureNodeDistance(a, G_h));
+        heuristic.push_back(0);
 
         g.addEdge(a.id, b.id, dist);
     }
