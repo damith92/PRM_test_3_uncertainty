@@ -14,6 +14,7 @@
 #include <fstream>
 #include <sstream>
 #include <regex>
+#include <chrono>
 #include <uxhw.h>
 
 int INF = std::numeric_limits<int>::max();
@@ -245,8 +246,10 @@ std::vector<Node> generateNodes(std::vector<ObsCoordinate> obscoordinates)
 
     std::vector<Node> vecNodes;
     std::vector<Node> vecNodesEx;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    //std::random_device rd;
+    unsigned int seed_1 = 752;
+    //std::mt19937 gen(rd());
+    std::mt19937 gen(seed_1);
     for (int ii = 1; ii < NODES + 1; ii++)
     {
 
@@ -495,13 +498,17 @@ int main()
     }
 
     // Create a random number generator
-    std::random_device rd;  // Obtain a random seed from the hardware
-    std::mt19937 gen(rd()); // Initialize the Mersenne Twister random number generator
+    //std::random_device rd;  // Obtain a random seed from the hardware
+    unsigned int seed_2 = 734;
+    //std::mt19937 gen(rd()); // Initialize the Mersenne Twister random number generator
+    std::mt19937 gen(seed_2);
 
     // Define the range for random numbers (1 to 4)
     std::uniform_real_distribution<double> distribution(1.0, 4.0);
     double random_number_std;
     
+    // Get the current time before running the program
+    auto start_time = std::chrono::high_resolution_clock::now();
 
     std::vector<Node> nodes = generateNodes(obscoordinates);
     std::vector<std::tuple<Node, Node>> knn_nodes = KNN(nodes, obscoordinates);
@@ -532,6 +539,15 @@ int main()
     }
 
     g.computeStarA(startId, goalId, heuristic);
+
+    // Get the current time after running the program
+    auto end_time = std::chrono::high_resolution_clock::now();
+
+    // Calculate the elapsed time in milliseconds
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+
+    // Print the elapsed time
+    std::cout << "Elapsed time: " << duration.count() << " milliseconds" << std::endl;
 
     for (auto &ii : g.optimalNodes)
     {
