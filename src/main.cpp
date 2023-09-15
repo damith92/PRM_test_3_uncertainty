@@ -503,8 +503,8 @@ int main()
     //std::mt19937 gen(rd()); // Initialize the Mersenne Twister random number generator
     std::mt19937 gen(seed_2);
 
-    // Define the range for random numbers (1 to 4)
-    std::uniform_real_distribution<double> distribution(1.0, 4.0);
+    // Define the range for random numbers (10 to 50)
+    std::uniform_real_distribution<double> distribution(10.0, 50.0);
     double random_number_std;
     
     // Get the current time before running the program
